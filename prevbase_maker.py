@@ -57,7 +57,7 @@ def vline(image,x,y1,y2,width):
 def hline(image,y,x1,x2,width):
     draw = ImageDraw.Draw(image)
     draw.rectangle(((int(min(x1,x2)),int(y-width*.5)),(int(max(x1,x2)),int(y+width*.5))), fill='black')
-def buttonpositions(buttonlist,center,width,sepfrac=.1):
+def buttonpositions(buttonlist,center,width):
     nb = len(buttonlist)
     sep = 0.7*max([b.size[0] for b in buttonlist])
     if nb==1:
@@ -113,7 +113,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
         if borderwidth > 0:
             hline(prevbase,240,0,480,borderwidth)
         subbuttons[0] = [opacity(maxdim(b,60*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[0]]
-        poslist=buttonpositions(subbuttons[0],(240,240),480,.09)
+        poslist=buttonpositions(subbuttons[0],(240,240),480)
         for j in range(0,len(subbuttons[0])):
             prevbase.paste(subbuttons[0][j],poslist[j],subbuttons[0][j])
 
@@ -128,7 +128,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             vline(prevbase,240,240,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,60*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],(120*(2*i+1),240),240,.15)
+            poslist=buttonpositions(subbuttons[i],(120*(2*i+1),240),240)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 3:
@@ -145,7 +145,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             hline(prevbase,360,240,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([120,360,360][i],[240,240,360][i]),240,.15)
+            poslist=buttonpositions(subbuttons[i],([120,360,360][i],[240,240,360][i]),240)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 4:
@@ -161,7 +161,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             hline(prevbase,360,0,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([120,360,120,360][i],[240,240,360,360][i]),240,.15)
+            poslist=buttonpositions(subbuttons[i],([120,360,120,360][i],[240,240,360,360][i]),240)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 5:
@@ -182,7 +182,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             hline(prevbase,360,240,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([420,420,120,360,360][i],[20,120,240,240,360][i]),120 if i<2 else 240,.15)
+            poslist=buttonpositions(subbuttons[i],([420,420,120,360,360][i],[20,120,240,240,360][i]),120 if i<2 else 240)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 6:
@@ -202,7 +202,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             vline(prevbase,240,240,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([420,420,120,360,120,360][i],[20,120,240,240,360,360][i]),120 if i<2 else 240,.15)
+            poslist=buttonpositions(subbuttons[i],([420,420,120,360,120,360][i],[20,120,240,240,360,360][i]),120 if i<2 else 240)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 7:
@@ -222,7 +222,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             vline(prevbase,240,240,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([420,420,120,300,420,120,360][i],[20,120,240,240,240,360,360][i]),120 if i in [0,1,3,4] else 240,.15)
+            poslist=buttonpositions(subbuttons[i],([420,420,120,300,420,120,360][i],[20,120,240,240,240,360,360][i]),120 if i in [0,1,3,4] else 240)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 8:
@@ -242,7 +242,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             vline(prevbase,240,240,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([420,420,120,120,300,420,300,420][i],[20,120,240,360,240,240,360,360][i]),240 if i in [2,3] else 120,.15)
+            poslist=buttonpositions(subbuttons[i],([420,420,120,120,300,420,300,420][i],[20,120,240,360,240,240,360,360][i]),240 if i in [2,3] else 120)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 9:
@@ -263,7 +263,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             vline(prevbase,120,360,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([420,420,120,300,420,60,180,300,420][i],[20,120,240,240,240,360,360,360,360][i]),240 if i==2 else 120,.15)
+            poslist=buttonpositions(subbuttons[i],([420,420,120,300,420,60,180,300,420][i],[20,120,240,240,240,360,360,360,360][i]),240 if i==2 else 120)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     if nsubs == 10:
@@ -283,7 +283,7 @@ def build_prevbase(base_im, sub_ims,subbuttons,buttonopacity=1.,buttonsizeboost=
             vline(prevbase,120,240,480,borderwidth)
         for i in range(0,nsubs):
             subbuttons[i] = [opacity(maxdim(b,50*(1+buttonsizeboost)),buttonopacity) for b in subbuttons[i]]
-            poslist=buttonpositions(subbuttons[i],([420,420,60,180,300,420,60,180,300,420][i],[20,120,240,240,240,240,360,360,360,360][i]),120,.15)
+            poslist=buttonpositions(subbuttons[i],([420,420,60,180,300,420,60,180,300,420][i],[20,120,240,240,240,240,360,360,360,360][i]),120)
             for j in range(0,len(subbuttons[i])):
                 prevbase.paste(subbuttons[i][j],poslist[j],subbuttons[i][j])
     return prevbase
