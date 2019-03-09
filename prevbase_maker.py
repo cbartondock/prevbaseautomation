@@ -336,5 +336,7 @@ for stage in [d for d in os.listdir(idir) if os.path.isdir(idir+d)]:
     # Build Prevbase
     prevbase = build_prevbase(base_image,sub_images,sub_buttons,conf['buttonopacity'],conf['buttonsizeboost'],conf['borderwidth'])
     prevbase = shear(prevbase,conf['shear'])
-    prevbase.save(odir+stage+'.png',quality=100)
+    prevbase.save(odir+stage+'_preview.png',quality=100)
     # Build Icon
+    icon = scalecrop(base_image,228,256)
+    icon.save(odir+stage+'_icon.png',quality=100)
