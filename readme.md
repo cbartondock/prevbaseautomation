@@ -55,3 +55,5 @@ That's it! Just build the prevbases via `python prevbase_maker.py` and your file
 ![p1](https://i.ibb.co/myrfYqj/battlefield.png)
 
 ![p2](https://i.ibb.co/0BMRZfv/finaldestination.png)
+
+![p3](https://i.ibb.co/VtnF6Cn/pirateship-preview.png)
