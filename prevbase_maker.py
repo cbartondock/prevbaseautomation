@@ -3,14 +3,10 @@ from PIL import ImageOps
 from PIL import ImageDraw
 from skimage import transform as tf
 import os
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
 import math
 
 # Helper Functions
-def display(pil_image):
-    plt.show(plt.imshow(np.array(pil_image)))
 def scalecrop(image, scaleheight, cropwidth):
     hpercent = float(scaleheight/float(image.size[1]))
     scalewidth = int(float(image.size[0])*hpercent)

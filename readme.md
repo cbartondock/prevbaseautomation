@@ -2,13 +2,13 @@
 ## Directory Structure
 The usage here is fairly straightforward. There are three directories: `buttons`, `inputs`, and `outputs`. You don't need to worry about `buttons` unless you want to replace the images of the gamecube buttons I have therein, in which case be my guest!
 
-The inputs directory should be filled with directories that are named after the stages you want to make prevbases for, eg:
+The `inputs` directory should be filled with directories that are named after the stages you want to make prevbases for, eg:
 
 ```
 inputs/
   battlefield/
   temple/
-  hyrule/
+  finaldestination/
 ```
 
 Each stage directory should have a subimages directory (for alternates - this directory can have anywhere between 0 and 10 images), and a base stage image (whose name doesn't matter), eg:
@@ -40,5 +40,17 @@ Finally we come to the config file `config.txt`. It has several options, all of 
   * solarize: An integer between 1 and 256, or any negative number if you want to disable solarize (it is disabled by default). The integer represents the value above and including which colors will be inverted, ie 1 inverts the image and 256 does nothing.
   * borderwidth: An integer between 1 and 20 or any negative number if you want to disable borders. The integer is the width in pixels of the separating borders.
 
+## Dependencies
+Unfortunately since this is a python script you need to have Python installed (I have tested this on both Python 3.5 and 3.7) and you will need the following modules:
+  * PIL, `pip3 install pillow`
+  * scipy, `pip3 install scipy`
+  * scikit-image, `pip3 install scikit-image`
+  * numpy, `pip3 install numpy`
+I'm fairly certain that's it; if you run it and it tells you you're missing a module just install it as above.
 
-That's it! Just run build the prevbases via `python prevbase_maker.py` and your files, correctly named after your stages, will be in the `outputs` directory. The program does all the thinking about layouts and where buttons should go for you, and so long as your screenshots are good it will just work.
+## Running it
+That's it! Just build the prevbases via `python prevbase_maker.py` and your files, correctly named after your stages, will be in the `outputs` directory. The program does all the thinking about layouts and where buttons should go for you, and so long as your screenshots are good it will just work. Here are a couple example outputs:
+
+![p1](https://i.ibb.co/myrfYqj/battlefield.png)
+
+![p2](https://i.ibb.co/0BMRZfv/finaldestination.png)
