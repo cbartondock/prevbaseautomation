@@ -1,26 +1,34 @@
 # Automated prevbase manufacture for SSBB
+## Directory Structure
 The usage here is fairly straightforward. There are three directories: `buttons`, `inputs`, and `outputs`. You don't need to worry about `buttons` unless you want to replace the images of the gamecube buttons I have therein, in which case be my guest!
 
 The inputs directory should be filled with directories that are named after the stages you want to make prevbases for, eg:
 
-`inputs/`
-  `battlefield/`
-  `temple/`
-  `hyrule/`
+```
+inputs/
+  battlefield/
+  temple/
+  hyrule/
+```
 
 Each stage directory should have a subimages directory (for alternates - this directory can have anywhere between 0 and 10 images), and a base stage image (whose name doesn't matter), eg:
 
-`temple/`
-  `subimages/`
-  `temple_image_name_irrelevant.png`
+```
+temple/
+  subimages/
+  temple_image_name_irrelevant.png
+```
  
 Finally, the subimages directory should contain all the screenshots of alternate stages named with their button combination (buttons separated by underscore), eg:
 
-`subimages/`
-  `Z\_X.png`
-  `L\_Z\_R.png`
-  `UP\_Z.png`
+```
+subimages/
+  Z_X.png
+  L_Z_R.png
+  UP_Z.png
+```
 
+## Configuration File
 Finally we come to the config file `config.txt`. It has several options, all of which are self explanatory (and explained via comments in the config file itself). They are
 
   * shear: A decimal between -1 and 1, <0 means the top of the image
@@ -33,4 +41,4 @@ Finally we come to the config file `config.txt`. It has several options, all of 
   * borderwidth: An integer between 1 and 20 or any negative number if you want to disable borders. The integer is the width in pixels of the separating borders.
 
 
-That's it!
+That's it! Just run build the prevbases via `python prevbase_maker.py` and your files, correctly named after your stages, will be in the `outputs` directory. The program does all the thinking about layouts and where buttons should go for you, and so long as your screenshots are good it will just work.
