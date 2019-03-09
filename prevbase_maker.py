@@ -6,6 +6,7 @@ import os
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 # Helper Functions
 def display(pil_image):
@@ -65,39 +66,39 @@ def buttonpositions(buttonlist,center,width,sepfrac=.1):
     sep = 0.7*max([b.size[0] for b in buttonlist])
     if nb==1:
         return [(
-                int(center[0]-buttonlist[0].size[0]/2.),
-                int(center[1]-buttonlist[0].size[1]/2.),
-                int(center[0]+buttonlist[0].size[0]/2.),
-                int(center[1]+buttonlist[0].size[1]/2.)
+                math.floor(center[0]-buttonlist[0].size[0]/2.),
+                math.floor(center[1]-buttonlist[0].size[1]/2.),
+                math.floor(center[0]+buttonlist[0].size[0]/2.),
+                math.floor(center[1]+buttonlist[0].size[1]/2.)
             )]
     elif nb==2:
         return [(
-                int(center[0]-buttonlist[0].size[0]),
-                int(center[1]-buttonlist[0].size[1]/2.),
-                int(center[0]),
-                int(center[1]+buttonlist[0].size[1]/2.)
+                math.floor(center[0]-buttonlist[0].size[0]),
+                math.floor(center[1]-buttonlist[0].size[1]/2.),
+                math.floor(center[0]),
+                math.floor(center[1]+buttonlist[0].size[1]/2.)
         ),(
-                int(center[0]),
-                int(center[1]-buttonlist[1].size[1]/2.),
-                int(center[0]+buttonlist[1].size[0]),
-                int(center[1]+buttonlist[1].size[1]/2.)
+                math.floor(center[0]),
+                math.floor(center[1]-buttonlist[1].size[1]/2.),
+                math.floor(center[0]+buttonlist[1].size[0]),
+                math.floor(center[1]+buttonlist[1].size[1]/2.)
         )]
     elif nb==3:
         return [(
-                int(center[0]-sep-buttonlist[0].size[0]/2.),
-                int(center[1]-buttonlist[0].size[1]/2.),
-                int(center[0]-sep+buttonlist[0].size[0]/2.),
-                int(center[1]+buttonlist[0].size[1]/2.)
+                math.floor(center[0]-sep-buttonlist[0].size[0]/2.),
+                math.floor(center[1]-buttonlist[0].size[1]/2.),
+                math.floor(center[0]-sep+buttonlist[0].size[0]/2.),
+                math.floor(center[1]+buttonlist[0].size[1]/2.)
         ),(
-                int(center[0]-buttonlist[1].size[0]/2.),
-                int(center[1]-buttonlist[1].size[1]/2.),
-                int(center[0]+buttonlist[1].size[0]/2.),
-                int(center[1]+buttonlist[1].size[1]/2.)
+                math.floor(center[0]-buttonlist[1].size[0]/2.),
+                math.floor(center[1]-buttonlist[1].size[1]/2.),
+                math.floor(center[0]+buttonlist[1].size[0]/2.),
+                math.floor(center[1]+buttonlist[1].size[1]/2.)
         ),(
-                int(center[0]+sep-buttonlist[2].size[0]/2.),
-                int(center[1]-buttonlist[2].size[1]/2.),
-                int(center[0]+sep+buttonlist[2].size[0]/2.),
-                int(center[1]+buttonlist[2].size[1]/2.)
+                math.floor(center[0]+sep-buttonlist[2].size[0]/2.),
+                math.floor(center[1]-buttonlist[2].size[1]/2.),
+                math.floor(center[0]+sep+buttonlist[2].size[0]/2.),
+                math.floor(center[1]+buttonlist[2].size[1]/2.)
         )]
 
 
@@ -300,7 +301,7 @@ with open('config.txt','r') as conf_file:
     conf_b = map(lambda s: float(s.strip()), conf_b)
     conf = dict(zip(conf_a,conf_b))
 conf['buttonopacity'] = max(min(conf['buttonopacity'],1.),0.)
-conf['buttonsizeboost'] = .35*max(min(conf['buttonsizeboost'],-1.),1.)
+conf['buttonsizeboost'] = max(min(conf['buttonsizeboost'],1.),-1.)
 conf['shear'] = max(min(conf['shear'],1.),-1.)
 conf['posterize'] = max(min(int(conf['posterize']),8),0) if conf['posterize']>0 else -1
 conf['solarize'] = max(min(int(conf['solarize']),256),0) if conf['solarize']>0 else -1
