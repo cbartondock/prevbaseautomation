@@ -11,7 +11,7 @@ inputs/
   finaldestination/
 ```
 
-Each stage directory should have a subimages directory (for alternates - this directory can have anywhere between 0 and 10 images), and a base stage image (whose name doesn't matter), eg:
+Each `stagename` directory should have a `subimages` directory (for alternates - this directory can have anywhere between 0 and 10 images), and a base stage image (whose name doesn't matter), eg:
 
 ```
 temple/
