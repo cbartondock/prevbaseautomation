@@ -61,4 +61,4 @@ That's it! Just build the prevbases via `python prevbase_maker.py` and your file
 
 Notice how the stages themselves are tilted in the above preview for pirates. That's because countershear was disabled. Here's how it looks with countershear:
 
-![p4](https://imgbb.com/"><img src="https://i.ibb.co/NVG7HnL/pirateship-preview.png)
+![p4](https://i.ibb.co/NVG7HnL/pirateship-preview.png)
