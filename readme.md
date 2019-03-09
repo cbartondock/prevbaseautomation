@@ -34,6 +34,7 @@ Finally we come to the config file `config.txt`. It has several options, all of 
   * _shear_ A decimal between -1 and 1, <0 means the top of the image
   moves right, >0 means the top of the image moves left. Typically
   you will want to stay between -.1 and .1 but I left it open.
+  * _countershear_ Sort of proud of this one. Either 0 or 1 for disabled/enabled. If enabled it shears the individual images in the opposite direction before the whole thing is sheared, so that they appear straight in the final result.
   * _buttonopacity_ A decimal between 0 and 1, pretty self explanatory.
   * _buttonsizeboost_ A decimal between -1 and 1, >0 increases button size, <0 decreases buttonsize. Again going that far from 0 isn't useful.
   * _posterize_ An integer between 1 and 8, or any negative number if you want to disable posterize (it is disabled by default). The integer represents the number of bits you are reducing the color to, ie 1 is the most posterized and 8 the least. 
@@ -57,3 +58,7 @@ That's it! Just build the prevbases via `python prevbase_maker.py` and your file
 ![p2](https://i.ibb.co/0BMRZfv/finaldestination.png)
 
 ![p3](https://i.ibb.co/VtnF6Cn/pirateship-preview.png)
+
+Notice how the stages themselves are tilted in the above preview for pirates. That's because countershear was disabled. Here's how it looks with countershear:
+
+![p4](https://imgbb.com/"><img src="https://i.ibb.co/NVG7HnL/pirateship-preview.png)
