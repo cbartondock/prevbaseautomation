@@ -4,9 +4,13 @@ from PIL import ImageDraw
 from skimage import transform as tf
 import os
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
 import math
 
 # Helper Functions
+def display(pil_image):
+    plt.show(plt.imshow(np.array(pil_image)))
 def scalecrop(image, scaleheight, cropwidth):
     hpercent = float(scaleheight/float(image.size[1]))
     scalewidth = int(float(image.size[0])*hpercent)
@@ -51,6 +55,17 @@ def shear(image, shearfrac):
     result = tf.warp(extended, inverse_map=sheartf)
     resultim=Image.fromarray((result*255).astype(np.uint8))
     return resultim.resize(image.size,Image.ANTIALIAS)
+def countershear(image, shearfrac):
+    shearfrac = - shearfrac
+    sheartf = tf.AffineTransform(shear=shearfrac)
+    scaling=1+abs(shearfrac)
+    extended = Image.new("RGB",(int(image.size[0]*scaling),image.size[1]))
+    extended.paste(image,(0 if shearfrac>0 else extended.size[0]-image.size[0],0,image.size[0] if shearfrac>0 else extended.size[0],image.size[1]))
+    result = tf.warp(extended, inverse_map=sheartf)
+    resultim = Image.fromarray((result*255).astype(np.uint8))
+    resultim = resultim.resize((int(scaling*resultim.size[0]),int(scaling*resultim.size[1])),Image.ANTIALIAS)
+    return resultim.crop((resultim.size[0]*(1-abs(shearfrac))-image.size[0],0,resultim.size[0]*(1-abs(shearfrac)),image.size[1]))
+
 def vline(image,x,y1,y2,width):
     draw = ImageDraw.Draw(image)
     draw.rectangle(((int(x-width*.5),int(min(y1,y2))),(int(x+width*.5),int(max(y1,y2)))), fill='black')
@@ -302,6 +317,7 @@ conf['shear'] = max(min(conf['shear'],1.),-1.)
 conf['posterize'] = max(min(int(conf['posterize']),8),0) if conf['posterize']>0 else -1
 conf['solarize'] = max(min(int(conf['solarize']),256),0) if conf['solarize']>0 else -1
 conf['borderwidth'] = max(min(int(conf['borderwidth']),20),0) if conf['borderwidth']>0 else -1
+conf['countershear'] = int(conf['countershear']>0)
 
 
 # Load in images and make the prevbases
@@ -333,6 +349,9 @@ for stage in [d for d in os.listdir(idir) if os.path.isdir(idir+d)]:
         print("At most three buttons can be used for a single stage.")
         print("Your stage "+stage+" has a subimage with too many buttons in its name.")
         exit()
+    if conf['countershear']:
+        base_image = countershear(base_image,conf['shear'])
+        sub_images = [countershear(si, conf['shear']) for si in sub_images]
     # Build Prevbase
     prevbase = build_prevbase(base_image,sub_images,sub_buttons,conf['buttonopacity'],conf['buttonsizeboost'],conf['borderwidth'])
     prevbase = shear(prevbase,conf['shear'])
