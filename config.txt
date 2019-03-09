@@ -1,4 +1,4 @@
-shear=-.04 //a decimal between -1. and 1. (<0 means the top of the image moves right, >0 left)
+shear=-.09 //a decimal between -1. and 1. (<0 means the top of the image moves right, >0 left)
 buttonopacity=1. //a decimal between 0. and 1. (self explanatory)
 buttonsizeboost=0 //a decimal between -1. and 1. (>0 increase button size, <0 decrease)
 posterize=-1 //an integer between 1 and 8 (any negative number disables posterize) (# of bits to keep)
